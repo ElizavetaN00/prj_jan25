@@ -1,38 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/montyholl/">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <title>Monty hall game</title>
+
+  <!-- Если публикуете на GitHub Pages в репо /REPO_NAME/, пропишите base-href -->
+  <base href="/montyholl/">
+  
   <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="montyhall">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>montyhall</title>
   <link rel="manifest" href="manifest.json">
+  <meta name="google" content="notranslate" />
+
+  <style>
+    /* Обёртка, закрывающая весь экран */
+    #loading-wrapper {
+      position: fixed;
+      top: 0; 
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF; /* Фон */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999; /* Поверх всего */
+    }
+
+    /* Стили самих эмоджи: размер и анимация вращения */
+    .spin-emoji {
+      font-size: 64px; /* выберите комфортный размер */
+      display: inline-block;
+      animation: spin 2s linear infinite; /* зациклить вращение */
+    }
+
+    /* Ключевые кадры анимации */
+    @keyframes spin {
+      0%   { transform: rotate(0deg);   }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <!-- Прелоадер: вращающаяся эмоджи (коза) -->
+  <div id="loading-wrapper">
+    <div class="spin-emoji">🐐</div>
+  </div>
+  <script>
+    // Когда Flutter отрисовывает первый кадр, убираем прелоадер
+    window.addEventListener("flutter-first-frame", function () {
+      var loader = document.getElementById("loading-wrapper");
+      if (loader) {
+        loader.parentNode.removeChild(loader);
+      }
+    });
+  </script>
+  <!-- Скрипт Flutter (собранный) -->
+  <script src="main.dart.js" type="application/javascript"></script>
+
+
 </body>
 </html>
