@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:montyholl/help.dart';
-import 'package:montyholl/history.dart';
+import 'package:montyhall/help.dart';
+import 'package:montyhall/history.dart';
 
 void main() {
   runApp(const MontyHallApp());

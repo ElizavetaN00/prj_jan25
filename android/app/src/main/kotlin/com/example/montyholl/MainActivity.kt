@@ -1,4 +1,4 @@
-package com.example.montyholl
+package com.example.montyhall
 
 import io.flutter.embedding.android.FlutterActivity
 
